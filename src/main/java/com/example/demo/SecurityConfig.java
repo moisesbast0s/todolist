@@ -20,8 +20,8 @@ public class SecurityConfig {
         http
         	.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/cadastro", "/recuperar-senha", "/public/**", "css/styles.css", "morcego.webp", "css/teste.css", "teste.jpg").permitAll() // Rotas públicas   
-                .requestMatchers("/tarefas/**", "css/teste.css", "/tarefas/concluir/**", "/tarefas/remover/**").authenticated()  // Apenas usuários autenticados podem acessar tarefas
+                .requestMatchers("/", "/cadastro", "/recuperar-senha", "/public/**", "css/styles.css", "morcego.webp", "teste.jpg").permitAll() // Rotas públicas   
+                .requestMatchers("/tarefas/**", "/tarefas/concluir/**", "/tarefas/remover/**").authenticated()  // Apenas usuários autenticados podem acessar tarefas
                 .anyRequest().authenticated() // Todas as outras rotas exigem autenticação
             )
             .formLogin((form) -> form

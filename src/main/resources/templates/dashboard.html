@@ -4,7 +4,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>To-do List - Caótica</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/dashboard.css}" href="/css/dashboard.css">
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     
@@ -12,30 +12,23 @@
 <body class="dashboard">
    
     <div class="welcome-header">
-    <h1>Bem-vindo, <span th:text="${nomeUsuario}">Usuário</span> !</h1>
+    <h1>Bem-vindo, <span th:text="${nomeUsuario}">Usuário</span> .</h1>
     <form th:action="@{/logout}" method="post">
         <button type="submit" class="logout-button">Sair</button>
     </form>
 </div>
 
    
- 
 <form action="/tarefas/adicionar" method="post" class="task-form">
     <input type="hidden" name="_csrf" value="${_csrf.token}"> <!-- Token CSRF -->
     
     <div class="input-group">
         <input type="text" maxlength="30" name="descricao" placeholder="Adicionar nova tarefa" required class="input-tarefa">
         <input type="text" id="datepicker" name="data" class="input-data" placeholder="Selecionar Data">
-
-         
           <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <button type="submit" class="btn-confirmar">Confirmar</button>
     </div>
 </form>
-
-
-
-	
 
     <div class="tarefas-container">
         <ul>
@@ -51,16 +44,11 @@
         <span class="tarefa-data" th:text="${#temporals.format(tarefa.data, 'dd ''de'' MMMM ''de'' yyyy')}"></span>
     </div>
         
-        
-        
       <!-- Botão de remoção -->
     <form th:action="@{/tarefas/remover/{id}(id=${tarefa.id})}" method="post">
         <input type="hidden" name="id" th:value="${tarefa.id}">
         <button type="submit" class="btn-remover">Excluir</button>
     </form>
-        
-        
-        
         
         <!-- Formulário para marcar/desmarcar tarefa -->
         <form th:action="@{/tarefas/concluir/{id}(id=${tarefa.id})}" method="post" class="concluir-form">
