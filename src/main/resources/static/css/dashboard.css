@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Define a fonte */
+    font-weight: 600; /* Define o peso como Semibold */
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #2c1a4a;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: column; /* Coloca os elementos um abaixo do outro */
+    align-items: center; /* Centraliza os itens */
+    gap: 15px; /* Espaço entre os elementos */
+}
+
+
+
+form {
+    margin: 20px auto;
+    flex-direction: horizontal;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}	
+
+
+
+input, button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #E9E9DE;
+}
+
+
+
+.tarefas-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 650px; /* Largura do retângulo */
+    height: 100px; /* Altura do retângulo */
+    border-radius: 10px;
+    margin-top: 10px; /* Espaço acima do retângulo */
+    
+}
+
+
+
+/* Aplica o estilo aos li dentro do ul */
+.tarefas-container ul li {
+    display: flex; /* Usa o Flexbox para alinhar os itens */
+    justify-content: space-between; /* Distribui o conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    margin-bottom: 1rem; /* Espaçamento entre os itens */
+}
+
+.tarefas-container ul li {
+    display: flex;
+    gap: 10px;
+    padding: 1px 8px;
+    border-bottom: 1px solid #ddd;
+    min-height: 30px;
+    
+
+}
+
+/* Aplica um espaçamento entre a descrição e a data */
+
+
+
+.tarefas-container li {
+    background: #E9E9DE;
+    opacity: 80;
+    color: #000;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 650px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto; /* Define margens automáticas nas laterais para centralizar */
+    
+   
+}
+
+.tarefas-container ul	 {
+    width: 100%;
+    max-width: 600px;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+.tarefa-detalhes {
+    flex: 1; /* Faz a descrição ocupar todo o espaço disponível */
+    white-space: nowrap; /* Impede quebra de linha */
+    overflow: hidden; /* Esconde texto que for muito longo */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto muito grande */
+}
+
+
+
+.tarefa-botao {
+    min-width: 100px; /* Garante um tamanho mínimo para o botão */
+    text-align: right;
+}
+
+
+
+.welcome-header {
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço entre os elementos */
+    align-items: center; /* Centraliza verticalmente */
+    margin-bottom: 2rem;
+    padding: 1rem;
+   gap: 5rem;
+    color: white;
+    border-radius: 8px;
+}
+
+.logout-button {
+    padding: 0.5rem 1.5rem;
+    background-color: #f8f8f8;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #702786;  
+}
+
+
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o checkbox e o texto */
+}
+
+
+/* Caixa para o marcador */
+input[type="checkbox"] {
+  appearance: none;
+  position: relative;
+  /* Tamanho */
+  width: 1.125rem;
+  height: 1.125rem;
+  /* Cor do fundo e borda */
+  background-color: #fff;
+  border: 0.125rem solid #000000;
+  border-radius: 0.25rem;
+}
+
+/* Características do marcador */
+input[type="checkbox"]::before {
+  content: "";
+  /* Posicionar no meio */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Tamanho do marcador */
+  width: 0.75rem;
+  height: 0.75rem;
+  /* Formato do marcador */
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  /* Posicionar no meio */
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: center;
+  transition: 0.125s transform ease-in-out;
+  /* Cor do marcador */
+  box-shadow: inset 1rem 1rem #fff;
+}
+
+/* Cor da caixa para o marcador */
+input[type="checkbox"]:checked {
+  background-color: #8000ff;
+  border-color: #8080ff;
+}
+
+/* Características do marcador quando selecionado */
+input[type="checkbox"]:checked::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Características do marcador quando selecionado */
+input[type="checkbox"]:disabled {
+  opacity: 0.25;
+}
+
+input[type="checkbox"]:focus {
+  border-color: #8080ff;
+}
+
+input[type="checkbox"]:focus + label {
+  color: #8000ff;
+}
+
+
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+
+.btn-remover {
+    background-color: #ff4d4d; /* Vermelho */
+    color: white; /* Texto branco */
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-remover:hover {
+    background-color: #cc0000; /* Vermelho mais escuro no hover */
+    transform: scale(1.05); /* Aumenta ligeiramente no hover */
+}
+
+.btn-remover:active {
+    transform: scale(0.95); /* Efeito de clique */
+}
+
+
+.task-form {
+    width: 100%;
+    max-width: 600px; /* Limita o crescimento do formulário para evitar exageros */
+    margin: 0 auto; /* Centraliza o formulário */
+}
+
+.input-group {
+    display: flex;
+    align-items: center; /* Mantém os itens alinhados na mesma linha */
+    gap: 10px; /* Espaçamento entre os elementos */
+    width: 100%;
+}
+
+.input-tarefa {
+	
+    flex-grow: 1; /* Faz o input crescer automaticamente */
+    
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+.input-tarefa {
+    width: 100% !important; /* Ajusta o tamanho do input para ocupar todo o espaço disponível */
+    min-width: 400px !important; /* Defina um tamanho mínimo */
+    max-width: 600px !important; /* Defina um tamanho máximo */
+}
+
+.input-data {
+    width: 120px; /* Mantém o campo de data fixo */
+}
+
+.btn-confirmar {
+    width: 120px; /* Mantém o botão de confirmar fixo */
+    padding: 10px;
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-confirmar:hover {
+    background-color: #388E3C;
+    transform: scale(1.05);
+}
+
+.btn-confirmar:active {
+    transform: scale(0.95);
+}
+
+
+.data-container {
+    display: inline-flex; /* Mantém o container inline */
+    align-items: center; /* Alinha verticalmente */
+    gap: 0; /* Espaço entre ícone e data */
+    margin-left: 8px; /* Espaço após a descrição */
+}
+
+.clock-icon img {
+    width: 16px;
+    height: 16px;
+    display: block; /* Remove espaço extra abaixo da imagem */
+}
+
+.tarefa-data {
+    font-size: 0.9em; /* Ajuste opcional para a fonte */
+    text-align: right;
+    margin-left: 2px; /* Espaçamento mínimo entre ícone e data */
+    padding: 0;
+    
+}
+.clock-icon {
+    margin: 0; /* Remove margens */
+    padding: 0; /* Remove paddings */
+}
+
+.tarefa-data {
+    margin-left: 2px; /* Espaçamento mínimo entre ícone e data */
+    padding: 0;
+}
+
+
+

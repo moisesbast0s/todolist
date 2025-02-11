@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+	    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img th:src="@{/teste.jpg}" src="/teste.jpg" alt="Morcego Roxo">
+        </div>
+        <div class="login-container">
+            <h2>Entre na sua conta</h2>
+          
+            
+             <!-- Exibe a mensagem de erro, se existir -->
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                Email ou senha inválidos.
+            </div>
+            
+            <!-- Formulário de login com Thymeleaf e Spring Security -->
+            <form th:action="@{/login}" method="post">
+                <!-- Campo de email -->
+                <label for="username">Email</label>
+                <input type="email" id="username" name="username" placeholder="Digite seu email" required>
+
+                <!-- Campo de senha -->
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+
+                <!-- Link para recuperação de senha -->
+                <a th:href="@{/recuperar-senha}" class="forgot-password">Esqueceu sua senha?</a>
+
+                <!-- Botão de submit -->
+                <button type="submit">Login</button>
+            </form>
+            <!-- Link para cadastro -->
+            <p>Não tem conta? <a th:href="@{/cadastro}">Cadastrar-se</a></p>
+
+        </div>
+    </div>
+</body>
+</html>
