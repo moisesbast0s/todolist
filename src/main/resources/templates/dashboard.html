@@ -12,7 +12,7 @@
 <body class="dashboard">
    
     <div class="welcome-header">
-    <h1>Bem-vindo, <span th:text="${nomeUsuario}">Usuário</span> .</h1>
+    <h1>Bem-vindo, <span th:text="${nomeUsuario}">Usuário</span> </h1>
     <form th:action="@{/logout}" method="post">
         <button type="submit" class="logout-button">Sair</button>
     </form>
