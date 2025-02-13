@@ -2,9 +2,7 @@ package com.example.demo;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.Map;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,28 +58,16 @@ public class TarefaController {
     }
     
     
-    @PostMapping("/tarefas/concluir/{id}")
+    @PostMapping("/concluir/{id}")
     @ResponseBody
-    public ResponseEntity<String> concluirTarefa(@PathVariable Long id, @RequestBody Map<String, Boolean> payload) {
-        System.out.println("Recebendo requisição para concluir tarefa ID: " + id);
+    public ResponseEntity<Void> concluirTarefa(@PathVariable Long id) {
+        Tarefa tarefa = tarefaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
         
-        Optional<Tarefa> tarefaOpt = tarefaRepository.findById(id);
-        if (tarefaOpt.isPresent()) {
-            Tarefa tarefa = tarefaOpt.get();
-            System.out.println("Status antes: " + tarefa.isConcluida());
-            
-            tarefa.setConcluida(payload.get("concluida")); // Atualiza o status da tarefa
-            tarefaRepository.save(tarefa);
-
-            System.out.println("Status depois: " + tarefa.isConcluida());
-            return ResponseEntity.ok("Tarefa atualizada com sucesso");
-        }
-        
-        System.err.println("Tarefa não encontrada para o ID: " + id);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tarefa não encontrada");
+        tarefa.setConcluida(true);
+        tarefaRepository.save(tarefa);
+        return ResponseEntity.ok().build();
     }
-
-    
 
     // Método para excluir a tarefa
     @PostMapping("/remover/{id}")
