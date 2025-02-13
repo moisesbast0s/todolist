@@ -3,7 +3,6 @@ package com.example.demo;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/tarefas")
@@ -59,15 +57,19 @@ public class TarefaController {
     
     
     @PostMapping("/concluir/{id}")
-    @ResponseBody
-    public ResponseEntity<Void> concluirTarefa(@PathVariable Long id) {
+    public String concluirTarefa(@PathVariable Long id, @RequestParam(required = false) boolean concluida) {
         Tarefa tarefa = tarefaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
         
-        tarefa.setConcluida(true);
+        // Se o parâmetro 'concluida' for enviado, use-o; caso contrário, marque como true
+        tarefa.setConcluida(concluida);
         tarefaRepository.save(tarefa);
-        return ResponseEntity.ok().build();
+
+        // Redireciona para a mesma página (por exemplo, o dashboard ou a página de tarefas)
+        return "redirect:/dashboard"; // ou "redirect:/tarefas", conforme sua rota
     }
+
+
 
     // Método para excluir a tarefa
     @PostMapping("/remover/{id}")
