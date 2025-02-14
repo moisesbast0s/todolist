@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.controllers;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.models.Tarefa;
+import com.example.demo.models.Usuario;
+import com.example.demo.repositories.TarefaRepository;
+import com.example.demo.repositories.UsuarioRepository;
 
 @Controller
 @RequestMapping("/tarefas")
