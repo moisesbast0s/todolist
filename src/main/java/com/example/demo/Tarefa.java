@@ -1,6 +1,5 @@
 package com.example.demo;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +24,6 @@ public class Tarefa {
     private Usuario usuario;
 
 	
-    // Getters e Setters criado pelo Lombok 
+  
     
 }

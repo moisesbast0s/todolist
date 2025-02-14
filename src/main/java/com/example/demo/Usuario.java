@@ -1,7 +1,4 @@
-
-
 package com.example.demo;
-
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,8 +12,6 @@ import lombok.Setter;
 @Entity
 public class Usuario {
 	
-	
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +19,5 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-
     
-   
 }

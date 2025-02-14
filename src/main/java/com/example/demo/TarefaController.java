@@ -2,7 +2,6 @@ package com.example.demo;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -68,7 +67,6 @@ public class TarefaController {
         // Redireciona para a mesma página (por exemplo, o dashboard ou a página de tarefas)
         return "redirect:/dashboard"; // ou "redirect:/tarefas", conforme sua rota
     }
-
 
 
     // Método para excluir a tarefa
