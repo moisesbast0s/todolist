@@ -1,13 +1,17 @@
 package com.example.demo;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.validation.Valid;
 
 @Controller
 public class AuthController {
@@ -23,63 +27,67 @@ public class AuthController {
         @RequestParam(value = "sucesso", required = false) boolean sucesso,
         Model model
     ) {
-        // Verifica se o parâmetro "sucesso" está presente
         if (sucesso) {
             model.addAttribute("sucesso", "Conta criada com sucesso!");
         }
-
-        return "login"; // Retorna o template login.html
+        return "login"; 
     }
 
     @GetMapping("/cadastro")
     public String cadastro() {
-        return "cadastro"; // Retorna o template cadastro.html
+        return "cadastro"; 
+    }
+
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrarUsuario(@Valid @RequestBody UsuarioValid usuarioDTO) {
+        return ResponseEntity.ok("Usuário cadastrado com sucesso!");
     }
 
     @PostMapping("/cadastro")
-    public String cadastrarUsuario(
-        @RequestParam String nome,
-        @RequestParam String email,
-        @RequestParam String senha,
-        Model model // Usa Model para passar mensagens
-    ) {
+    public String cadastrarUsuario(@Valid UsuarioValid usuarioDTO, Model model) {
         // Verifica se o email já está cadastrado
-        if (usuarioRepository.findByEmail(email).isPresent()) {
+        if (usuarioRepository.findByEmail(usuarioDTO.getEmail()).isPresent()) {
             model.addAttribute("erro", "Este email já está cadastrado.");
-            return "cadastro"; // Retorna para a página de cadastro com a mensagem de erro
+            return "cadastro";
         }
 
         // Cria um novo usuário
         Usuario usuario = new Usuario();
-        usuario.setNome(nome);
-        usuario.setEmail(email);
-        usuario.setSenha(passwordEncoder.encode(senha)); // Criptografa a senha
+        usuario.setNome(usuarioDTO.getNome());
+        usuario.setEmail(usuarioDTO.getEmail());
+        usuario.setSenha(passwordEncoder.encode(usuarioDTO.getSenha())); // Criptografa a senha
 
         // Salva o usuário no banco de dados
         usuarioRepository.save(usuario);
 
-        // Adiciona uma mensagem de sucesso ao modelo
-        String mensagemSucesso = "Conta criada com sucesso! <a href='/login'>Fazer Login</a>.";
-        model.addAttribute("sucesso", mensagemSucesso);
-
-        // Retorna para a página de cadastro com a mensagem de sucesso
+        // Adiciona mensagem de sucesso ao modelo
+        model.addAttribute("sucesso", "Conta criada com sucesso! <a href='/login'>Fazer Login</a>.");
+        //retorna para cadastro.html
         return "cadastro";
     }
 
     @GetMapping("/recuperar-senha")
     public String recuperarSenha() {
         return "recuperar-senha";
-    }	
+    }
 
     @PostMapping("/recuperar-senha")
     public String recuperarSenha(@RequestParam String email, Model model) {
         Usuario usuario = usuarioRepository.findByEmail(email).orElse(null);
         if (usuario != null) {
-            // Lógica para enviar email de recuperação de senha
             model.addAttribute("mensagem", "Um email foi enviado para " + email);
         } else {
             model.addAttribute("mensagem", "Email não encontrado");
         }
         return "recuperar-senha";
+    }
+
+    // Captura erros de validação e retorna mensagem de erro para o frontend
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public String handleValidationExceptions(MethodArgumentNotValidException ex, Model model) {
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+            model.addAttribute("erro", error.getDefaultMessage())
+        );
+        return "cadastro"; 
     }
 }
