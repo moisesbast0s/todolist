@@ -4,7 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
             altInput: true,
             altFormat: "d/m/Y",   // Formato visível ao usuário
             locale: "pt",
-			minDate: "today"
+			minDate: "today",
+			allowInput: true, // prevent "readonly" prop
+
 
         });
     });
