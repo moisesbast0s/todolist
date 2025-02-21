@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.models.Usuario;
-import com.example.demo.models.UsuarioValid;
+
 import com.example.demo.repositories.UsuarioRepository;
 
 import jakarta.validation.Valid;
@@ -44,12 +44,12 @@ public class AuthController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<String> registrarUsuario(@Valid @RequestBody UsuarioValid usuarioDTO) {
+    public ResponseEntity<String> registrarUsuario(@Valid @RequestBody Usuario usuarioDTO) {
         return ResponseEntity.ok("Usuário cadastrado com sucesso!");
     }
 
     @PostMapping("/cadastro")
-    public String cadastrarUsuario(@Valid UsuarioValid usuarioDTO, Model model) {
+    public String cadastrarUsuario(@Valid Usuario usuarioDTO, Model model) {
         // Verifica se o email já está cadastrado
         if (usuarioRepository.findByEmail(usuarioDTO.getEmail()).isPresent()) {
             model.addAttribute("erro", "Este email já está cadastrado.");

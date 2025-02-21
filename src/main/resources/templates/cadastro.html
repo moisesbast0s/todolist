@@ -33,8 +33,15 @@
 
                 <!-- Campo de senha -->
                 <label for="senha">Criar senha</label>
-                <input type="password" id="senha" name="senha" placeholder="Pelo menos 6 caracteres"  required>
-
+				  <input 
+				    type="password" 
+				    id="senha" 
+				    name="senha"
+				    placeholder="Criar com 6 caracteres, com um número e um caractere especial"
+				    required 
+				    pattern="^(?=.*\d)(?=.*[!@#$%^&*]).{6,}$" 
+				    title="A senha deve ter pelo menos 6 caracteres,com um número e um caractere especial">
+					
                 <!-- Botão de submit -->
                 <button type="submit">Cadastrar</button>
             </form>
