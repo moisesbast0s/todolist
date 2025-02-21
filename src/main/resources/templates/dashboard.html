@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     
 </head>
+
 <body class="dashboard">
    
     <div class="welcome-header">
@@ -17,6 +18,9 @@
         <button type="submit" class="logout-button">Sair</button>
     </form>
 </div>
+
+
+
 <form action="/tarefas/adicionar" method="post" class="task-form">
     <input type="hidden" name="_csrf" value="${_csrf.token}"> <!-- Token CSRF -->
     
@@ -27,6 +31,10 @@
         <button type="submit" class="btn-confirmar">Confirmar</button>
     </div>
 </form>
+
+
+
+
     <div class="tarefas-container">
         <ul>
     <li th:each="tarefa : ${tarefas}">

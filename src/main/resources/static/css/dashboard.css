@@ -318,4 +318,20 @@ li {
 }
 
 
+  .input-error {
+        border-color: #ff4444 !important;
+        box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2) !important;
+    }
+    
+    /* Melhore a aparência do datepicker */
+    .flatpickr-calendar {
+        font-family: 'Sua Fonte', sans-serif;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .flatpickr-day.selected {
+        background: #6c5ce7;
+        border-color: #6c5ce7;
+    }
+
 
