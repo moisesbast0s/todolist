@@ -19,22 +19,16 @@
     </form>
 </div>
 
-
-
 <form action="/tarefas/adicionar" method="post" class="task-form">
     <input type="hidden" name="_csrf" value="${_csrf.token}"> <!-- Token CSRF -->
-    
+   
     <div class="input-group">
-        <input type="text" maxlength="30" name="descricao" placeholder="Adicionar nova tarefa" required class="input-tarefa">
+        <input type="text" maxlength="30" name="descricao" placeholder="Descreva a nova tarefa" required class="input-tarefa">
         <input type="text" id="datepicker" name="data" class="input-data" placeholder="Selecionar Data" required>
           <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <button type="submit" class="btn-confirmar">Confirmar</button>
     </div>
 </form>
-
-
-
-
     <div class="tarefas-container">
         <ul>
     <li th:each="tarefa : ${tarefas}">
@@ -61,15 +55,12 @@
 </form>  
     </li>
 </ul>
-
-
 <script src="/js/botaoSubmit.js"></script>
 <script src="/js/formatCalendar.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/functionTask.js"></script>
 <script src="/js/btnEvent.js"></script>
-
     </div>
 </body>
 </html>
