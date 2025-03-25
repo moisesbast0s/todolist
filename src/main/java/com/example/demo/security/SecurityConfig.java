@@ -30,8 +30,11 @@ public class SecurityConfig {
             .logout((logout) -> logout
                 .logoutSuccessUrl("/login") // Redireciona para /login após o logout
                 .permitAll()
-            );
+            )
 
+        	.exceptionHandling(exception -> exception
+                .accessDeniedPage("/error/403") // Página de erro 403
+            );
         return http.build();	
     }
 

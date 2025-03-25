@@ -6,7 +6,5 @@ document.addEventListener("DOMContentLoaded", function() {
             locale: "pt",
 			minDate: "today",
 			allowInput: true, // prevent "readonly" prop
-
-
         });
     });
